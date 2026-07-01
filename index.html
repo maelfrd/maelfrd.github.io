@@ -1,304 +1,331 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenue au 38 — Piscine & Jardin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --cream: #F0F8FF;
-      --blue: #1A6B9A;
-      --blue-light: #4FA8D5;
-      --dark: #0D2B3E;
-      --text: #1C3A50;
-      --muted: #5A7D92;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre album</title>
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      padding: 1.1rem 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      z-index: 100;
-      background: rgba(240,248,255,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(26,107,154,0.15);
-    }
-    .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--blue); letter-spacing:0.02em; }
-    .nav-links { display:flex; gap:2rem; list-style:none; }
-    .nav-links a { font-size:0.78rem; font-weight:600; text-decoration:none; color:var(--text); letter-spacing:0.08em; text-transform:uppercase; transition:color .2s; }
-    .nav-links a:hover { color:var(--blue); }
-    .nav-tel { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--blue); font-weight:600; text-decoration:none; letter-spacing:0.04em; transition:opacity .2s; }
-    .nav-tel:hover { opacity:.75; }
+<!-- ═══════════════════════════════════════════════════════════════════════
+     Polices
+════════════════════════════════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    /* ── HERO ── */
-    .hero { height:100vh; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-    .hero-bg {
-      position:absolute; inset:0;
-      background-image: url('photos/hero.jpg');
-      background-size:cover; background-position:center;
-    }
-    .hero-overlay { position:absolute; inset:0; background:rgba(13,43,62,0.42); }
-    .hero-content { position:relative; text-align:center; color:white; padding:0 2rem; }
-    .hero-eyebrow { font-size:0.75rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:1.4rem; opacity:.75; }
-    .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(3.5rem,9vw,7.5rem); font-weight:300; line-height:1.05; margin-bottom:1.2rem; letter-spacing:-0.01em; }
-    .hero-title em { font-style:italic; }
-    .hero-sub { font-size:1rem; font-weight:300; opacity:.88; letter-spacing:0.04em; margin-bottom:3rem; }
-    .hero-cta { display:inline-block; background:var(--blue); color:white; text-decoration:none; padding:.95rem 2.6rem; font-size:0.8rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; border-radius:2px; transition:background .2s,transform .2s; }
-    .hero-cta:hover { background:#155A82; transform:translateY(-2px); }
-    .scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:white; opacity:.5; font-size:0.72rem; letter-spacing:.2em; text-transform:uppercase; animation:bob 2.2s infinite; }
-    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+<style>
+  :root{
+    --fond:      #14110f;   /* brun-noir chaud (ambiance tirage) */
+    --fond-2:    #1c1815;
+    --ivoire:    #ede6da;
+    --estompe:   #a49a8c;
+    --laiton:    #c9a24b;   /* accent doré pour les numéros et filets */
+    --cadre:     rgba(237,230,218,.10);
+  }
 
-    /* ── SECTIONS ── */
-    .section-wrap { padding:6rem 3rem; max-width:1100px; margin:0 auto; }
-    .section-label { font-size:0.72rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--blue); margin-bottom:.9rem; }
-    .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:400; line-height:1.2; color:var(--dark); margin-bottom:2rem; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
 
-    /* ── DESCRIPTION ── */
-    .desc-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
-    .desc-text p { color:var(--muted); line-height:1.85; margin-bottom:1rem; font-weight:300; font-size:1.03rem; }
-    .desc-img {
-      aspect-ratio:4/5; border-radius:4px; overflow:hidden; position:sticky; top:100px;
-      background-image: url('photos/description.jpg');
-      background-size:cover; background-position:center top;
-    }
-    .stats { display:flex; gap:2.5rem; margin-top:2.5rem; padding-top:2rem; border-top:1px solid rgba(26,107,154,.18); }
-    .stat-num { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:600; color:var(--blue); line-height:1; }
-    .stat-lbl { font-size:.72rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-top:.25rem; }
+  html{ scroll-behavior:smooth; }
 
-    /* ── GALLERY ── */
-    .gallery-wrap { background:var(--dark); padding:6rem 3rem; }
-    .gallery-inner { max-width:1100px; margin:0 auto; }
-    .gallery-wrap .section-label { color:var(--blue-light); }
-    .gallery-wrap .section-title { color:white; }
-    .gallery-grid { display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:280px 280px; gap:10px; margin-top:2.5rem; }
-    .g-item {
-      border-radius:3px; overflow:hidden;
-      background-size:cover; background-position:center;
-      transition:transform .4s, opacity .3s;
-      cursor:pointer;
-    }
-    .g-item:hover { opacity:.88; transform:scale(1.01); }
-    .g-item:first-child { grid-row:1/3; }
-    .g1 { background-image: url('photos/galerie-1.jpg'); background-position: center 30%; }
-    .g2 { background-image: url('photos/galerie-2.jpg'); }
-    .g3 { background-image: url('photos/galerie-3.jpg'); }
-    .g4 { background-image: url('photos/galerie-4.jpg'); }
-    .g5 { background-image: url('photos/galerie-5.jpg'); background-position: center top; }
+  body{
+    background:var(--fond);
+    color:var(--ivoire);
+    font-family:"Inter", system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
 
-    /* ── LIGHTBOX ── */
-    .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.88); z-index:500; align-items:center; justify-content:center; }
-    .lightbox.active { display:flex; }
-    .lightbox img { max-width:90vw; max-height:90vh; border-radius:4px; object-fit:contain; }
-    .lightbox-close { position:absolute; top:1.5rem; right:2rem; color:white; font-size:2rem; cursor:pointer; opacity:.7; line-height:1; }
-    .lightbox-close:hover { opacity:1; }
-    .lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.15); border:none; color:white; font-size:2rem; width:3rem; height:3rem; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
-    .lightbox-nav:hover { background:rgba(255,255,255,.3); }
-    .lightbox-nav.prev { left:1.5rem; }
-    .lightbox-nav.next { right:1.5rem; }
+  /* léger grain / vignette pour l'ambiance album, sans gêner la lecture */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+    background:radial-gradient(120% 90% at 50% 35%, transparent 55%, rgba(0,0,0,.45) 100%);
+  }
 
-    /* ── EQUIPEMENTS ── */
-    .equip-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.9rem; margin-top:2.5rem; }
-    .equip-card { background:white; border:1px solid rgba(26,107,154,.12); border-radius:8px; padding:1.4rem; display:flex; align-items:flex-start; gap:.9rem; transition:border-color .2s,transform .2s; }
-    .equip-card:hover { border-color:var(--blue); transform:translateY(-2px); }
-    .equip-ico { font-size:1.4rem; min-width:1.8rem; }
-    .equip-name { font-weight:600; font-size:.88rem; color:var(--dark); }
-    .equip-desc { font-size:.78rem; color:var(--muted); margin-top:.15rem; }
+  /* ── Barre de progression du défilement ─────────────────────────────── */
+  .progression{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--laiton), #e9c877);
+    z-index:50; transition:width .1s linear;
+  }
 
-    /* ── CONTACT ── */
-    .contact-wrap { background:linear-gradient(135deg,#1A6B9A 0%,#0D2B3E 100%); padding:7rem 3rem; text-align:center; }
-    .contact-inner { max-width:680px; margin:0 auto; }
-    .contact-wrap .section-label { color:rgba(170,220,255,.85); }
-    .contact-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,5vw,3.6rem); font-weight:300; color:white; margin-bottom:.8rem; line-height:1.2; }
-    .contact-sub { color:rgba(255,255,255,.72); font-weight:300; margin-bottom:3rem; font-size:1.03rem; }
-    .phone-link { display:inline-flex; flex-direction:column; align-items:center; gap:.4rem; text-decoration:none; transition:transform .2s; }
-    .phone-link:hover { transform:scale(1.04); }
-    .phone-top { font-size:.72rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.6); }
-    .phone-num { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,5rem); font-weight:600; color:white; line-height:1; letter-spacing:.02em; }
-    .contact-note { margin-top:2rem; font-size:.82rem; color:rgba(255,255,255,.5); }
+  /* ── Couverture ─────────────────────────────────────────────────────── */
+  .couverture{
+    min-height:100svh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    padding:6vh 6vw; position:relative; z-index:2;
+  }
+  .couverture .eyebrow{
+    font-size:.78rem; letter-spacing:.42em; text-transform:uppercase;
+    color:var(--laiton); margin-bottom:1.6rem; font-weight:500;
+    padding-left:.42em;
+  }
+  .couverture h1{
+    font-family:"Fraunces", serif;
+    font-weight:300;
+    font-size:clamp(2.8rem, 9vw, 6.5rem);
+    line-height:1.02; letter-spacing:-.01em;
+    max-width:16ch;
+  }
+  .couverture .sous-titre{
+    font-family:"Fraunces", serif; font-style:italic; font-weight:400;
+    color:var(--estompe);
+    font-size:clamp(1.05rem, 2.6vw, 1.5rem);
+    margin-top:1.8rem; max-width:34ch; line-height:1.5;
+  }
+  .filet{ width:1px; height:64px; background:linear-gradient(var(--laiton), transparent); margin-top:3rem; }
+  .indice{
+    margin-top:1rem; font-size:.72rem; letter-spacing:.32em;
+    text-transform:uppercase; color:var(--estompe);
+    animation:respire 2.6s ease-in-out infinite;
+  }
+  @keyframes respire{ 0%,100%{opacity:.4} 50%{opacity:1} }
 
-    /* ── FOOTER ── */
-    footer { background:var(--dark); text-align:center; padding:1.8rem; color:rgba(255,255,255,.25); font-size:.78rem; letter-spacing:.05em; }
+  /* ── Chaque photo = un chapitre plein écran ─────────────────────────── */
+  .chapitre{
+    min-height:100svh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:9vh 5vw; position:relative; z-index:2; gap:1.6rem;
+  }
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:768px){
-      nav { padding:1rem 1.5rem; }
-      .nav-links { display:none; }
-      .section-wrap { padding:4rem 1.5rem; }
-      .desc-grid { grid-template-columns:1fr; gap:2rem; }
-      .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
-      .g-item:first-child { grid-row:auto; grid-column:1/3; height:240px; }
-      .g-item { height:180px; }
-      .gallery-wrap, .contact-wrap { padding:4rem 1.5rem; }
-      .stats { flex-wrap:wrap; gap:1.5rem; }
-    }
-  </style>
+  .cadre{
+    position:relative;
+    opacity:0; transform:translateY(38px);
+    transition:opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1);
+  }
+  .chapitre.vu .cadre{ opacity:1; transform:none; }
+
+  .cadre img{
+    display:block;
+    max-width:min(1080px, 92vw);
+    max-height:78svh;
+    width:auto; height:auto;
+    border-radius:2px;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.75),
+               0 0 0 1px var(--cadre);
+  }
+
+  /* numéro en grand chiffre discret, en filigrane derrière la légende */
+  .num{
+    position:absolute; top:-2.4rem; left:-.4rem;
+    font-family:"Fraunces", serif; font-weight:300;
+    font-size:clamp(3rem, 8vw, 5.5rem);
+    color:var(--laiton); opacity:.22; line-height:1;
+    user-select:none;
+  }
+
+  .legende{
+    max-width:min(1080px, 92vw);
+    text-align:center;
+    opacity:0; transform:translateY(20px);
+    transition:opacity 1s ease .18s, transform 1s ease .18s;
+  }
+  .chapitre.vu .legende{ opacity:1; transform:none; }
+  .legende .compteur{
+    font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--laiton); font-weight:500;
+  }
+  .legende .texte{
+    font-family:"Fraunces", serif; font-style:italic; font-weight:400;
+    color:var(--ivoire); font-size:clamp(1.05rem, 2.4vw, 1.45rem);
+    margin-top:.5rem; line-height:1.5;
+  }
+
+  /* ── Fin ────────────────────────────────────────────────────────────── */
+  .fin{
+    min-height:60svh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:1.2rem;
+    padding:8vh 6vw; position:relative; z-index:2; text-align:center;
+  }
+  .fin .mot{
+    font-family:"Fraunces", serif; font-style:italic; font-weight:300;
+    font-size:clamp(1.4rem, 4vw, 2.2rem); color:var(--estompe);
+  }
+  .fin button{
+    margin-top:.6rem; background:transparent; color:var(--ivoire);
+    border:1px solid var(--cadre); border-radius:100px;
+    padding:.7rem 1.5rem; font-family:inherit; font-size:.8rem;
+    letter-spacing:.14em; text-transform:uppercase; cursor:pointer;
+    transition:border-color .3s, color .3s;
+  }
+  .fin button:hover, .fin button:focus-visible{ border-color:var(--laiton); color:var(--laiton); }
+
+  /* ── États de chargement / vide ─────────────────────────────────────── */
+  .info{
+    min-height:100svh; display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:8vw; position:relative; z-index:2;
+  }
+  .info p{ color:var(--estompe); font-family:"Fraunces",serif; font-style:italic;
+           font-size:1.2rem; line-height:1.7; max-width:40ch; }
+  .info code{ font-family:ui-monospace,monospace; font-style:normal;
+              color:var(--laiton); background:var(--fond-2); padding:.15em .45em; border-radius:4px; }
+
+  :focus-visible{ outline:2px solid var(--laiton); outline-offset:4px; }
+
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    .cadre,.legende{ transition:none; opacity:1; transform:none; }
+    .indice{ animation:none; }
+  }
+</style>
 </head>
 <body>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
-  <button class="lightbox-nav prev" onclick="changePhoto(-1)">‹</button>
-  <img src="" id="lightbox-img" alt="">
-  <button class="lightbox-nav next" onclick="changePhoto(1)">›</button>
-</div>
+<div class="progression" id="progression"></div>
 
-<!-- NAVIGATION -->
-<nav>
-  <span class="nav-logo">Bienvenue au 38</span>
-  <ul class="nav-links">
-    <li><a href="#piscine">La piscine</a></li>
-    <li><a href="#photos">Photos</a></li>
-    <li><a href="#equipements">Équipements</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="tel:+33663911949" class="nav-tel">06 63 91 19 49</a>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Piscine privée · Le Perreux-sur-Marne</p>
-    <h1 class="hero-title">Plongez<br><em>au 38</em></h1>
-    <p class="hero-sub">Piscine, jardin et pool house — une journée comme en vacances</p>
-    <a href="#contact" class="hero-cta">Nous contacter</a>
-  </div>
-  <p class="scroll-hint">↓ Découvrir</p>
-</div>
-
-<!-- DESCRIPTION -->
-<div class="section-wrap" id="piscine">
-  <div class="desc-grid">
-    <div>
-      <p class="section-label">La piscine & le jardin</p>
-      <h2 class="section-title">Un espace<br>grand air</h2>
-      <div class="desc-text">
-        <p>LE 38 – Piscine privée & jardin d'exception aux portes de Paris</p>
-        <p>☀️ Offrez-vous une véritable parenthèse de détente au 38, un lieu privatif niché dans un environnement verdoyant au Perreux-sur-Marne, à seulement quelques minutes de Paris.</p>
-        <p>🎉 Que ce soit pour une journée en famille, un anniversaire, un moment de convivialité entre amis ou simplement pour profiter du soleil, le 38 vous accueille dans un cadre calme, intimiste et entièrement privatisé.</p>
-        <p>💦 Profitez d'une grande piscine privée, d'une vaste terrasse aménagée pour la détente, ainsi que d'un pool house équipé de douches et de sanitaires privatifs pour un confort optimal tout au long de votre séjour.</p>
-        <p>✨ Ce qui vous attend :</p>
-        <p>🏊 Piscine privative réservée à votre groupe</p>
-        <p>🌳 Jardin arboré et cadre paisible</p>
-        <p>☀️ Grande terrasse pour se détendre et partager un repas</p>
-        <p>🚿 Pool house avec douche et toilettes privatives</p>
-        <p>👨‍👩‍👧‍👦 Espace adapté aux familles avec jeunes enfants</p>
-        <p>🚆 Accès rapide depuis Paris et l'Est parisien</p>
-        <p>🔒 Volet roulant de sécurité disponible sur demande</p>
-        <p>💙 Pour votre tranquillité, un volet roulant de sécurité peut être installé avant votre arrivée afin de sécuriser l'accès au bassin lorsqu'il n'est pas utilisé.</p>
-        <p>⚠️ La baignade s'effectue sous la surveillance et l'entière responsabilité des parents ou accompagnateurs.</p>
-        <p>📍 Le Perreux-sur-Marne (94)</p>
-        <p>💰 Réservation directe, sans intermédiaire et sans frais de service.</p>
-        <p>📞 Un simple appel suffit pour connaître les disponibilités et réserver votre prochaine journée de détente.</p>
-        <p>🌴 Le 38 : tout le plaisir des vacances, à quelques minutes de Paris.</p>
-      </div>
-      <div class="stats">
-        <div><div class="stat-num">25°</div><div class="stat-lbl">Environ</div></div>
-        <div><div class="stat-num">8 m</div><div class="stat-lbl">Longueur</div></div>
-        <div><div class="stat-num">20€</div><div class="stat-lbl">/ heure · sur devis</div></div>
-        <div><div class="stat-num">50</div><div class="stat-lbl">Personnes max</div></div>
-      </div>
-    </div>
-    <div class="desc-img"></div>
-  </div>
-</div>
-
-<!-- PHOTOS -->
-<div class="gallery-wrap" id="photos">
-  <div class="gallery-inner">
-    <p class="section-label">Photos</p>
-    <h2 class="section-title">Visitez<br>l'espace</h2>
-    <div class="gallery-grid">
-      <div class="g-item g1" onclick="openLightbox(0)" title="Vue piscine"></div>
-      <div class="g-item g2" onclick="openLightbox(1)" title="Toboggan & transats"></div>
-      <div class="g-item g3" onclick="openLightbox(2)" title="Terrasse & maison"></div>
-      <div class="g-item g4" onclick="openLightbox(3)" title="Pool house & fauteuils"></div>
-      <div class="g-item g5" onclick="openLightbox(4)" title="Jeux de jardin"></div>
-    </div>
-  </div>
-</div>
-
-<!-- EQUIPEMENTS -->
-<div class="section-wrap" id="equipements">
-  <p class="section-label">Ce qui vous attend</p>
-  <h2 class="section-title">Équipements<br>& activités</h2>
-  <div class="equip-grid">
-    <div class="equip-card"><span class="equip-ico">🏊</span><div><div class="equip-name">Grande piscine</div><div class="equip-desc">Eau chauffée, fond carrelé, escalier</div></div></div>
-    <div class="equip-card"><span class="equip-ico">🛝</span><div><div class="equip-name">Toboggan</div><div class="equip-desc">Accès direct dans l'eau</div></div></div>
-    <div class="equip-card"><span class="equip-ico">🏡</span><div><div class="equip-name">Pool house</div><div class="equip-desc">Espace couvert avec vestiaires</div></div></div>
-    <div class="equip-card"><span class="equip-ico">🌿</span><div><div class="equip-name">Grand jardin</div><div class="equip-desc">Pelouse, arbres, hamac</div></div></div>
-    <div class="equip-card"><span class="equip-ico">🪑</span><div><div class="equip-name">Transats & fauteuils</div><div class="equip-desc">Mobilier de détente autour du bassin</div></div></div>
-    <div class="equip-card"><span class="equip-ico">🎯</span><div><div class="equip-name">Molkky & pétanque</div><div class="equip-desc">Terrains aménagés sur place</div></div></div>
-    <div class="equip-card"><span class="equip-ico">🌡️</span><div><div class="equip-name">Eau à ~30°C</div><div class="equip-desc">Température idéale en été</div></div></div>
-    <div class="equip-card"><span class="equip-ico">🚗</span><div><div class="equip-name">Parking</div><div class="equip-desc">Stationnement sur place disponible</div></div></div>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div class="contact-wrap" id="contact">
-  <div class="contact-inner">
-    <p class="section-label">Réservation directe</p>
-    <h2 class="contact-title">Une journée<br>les pieds dans l'eau ?</h2>
-    <p class="contact-sub">Appelez-nous pour connaître les disponibilités — réservation sans intermédiaire, sans commission.</p>
-    <a href="tel:+33663911949" class="phone-link">
-      <span class="phone-top">Appelez-nous</span>
-      <span class="phone-num">06 63 91 19 49</span>
-    </a>
-    <p class="contact-note">Disponible tous les jours · Réponse rapide garantie</p>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 Bienvenue au 38 · Piscine privée · Le Perreux-sur-Marne</p>
-</footer>
+<!-- La couverture et les chapitres sont générés automatiquement ci-dessous -->
+<main id="album"></main>
 
 <script>
-  const photos = [
-    'photos/galerie-1.jpg',
-    'photos/galerie-2.jpg',
-    'photos/galerie-3.jpg',
-    'photos/galerie-4.jpg',
-    'photos/galerie-5.jpg',
-  ];
-  let current = 0;
+/* ════════════════════════════════════════════════════════════════════════
+   ▛ RÉGLAGES — c'est ici, et seulement ici, que vous modifiez le texte ▟
+   ════════════════════════════════════════════════════════════════════════ */
 
-  function openLightbox(index) {
-    current = index;
-    document.getElementById('lightbox-img').src = photos[current];
-    document.getElementById('lightbox').classList.add('active');
-    document.body.style.overflow = 'hidden';
+const CONFIG = {
+  titre:     "Notre album",                       // grand titre de la couverture
+  sousTitre: "Une histoire en quelques images.",  // petite phrase sous le titre
+  motFin:    "Fin.",                              // mot affiché tout en bas
+
+  dossier:   "photos",   // le dossier qui contient vos photos
+  extension: "jpg",      // toutes les photos sont en .jpg
+};
+
+/* ── Légendes (facultatif) ────────────────────────────────────────────────
+   La clé = le NUMÉRO de la photo. Laissez "" si vous ne voulez pas de texte.
+   Exemple :  3: "Le premier jour au jardin",                                */
+const LEGENDES = {
+  1:  "",
+  2:  "",
+  3:  "",
+  4:  "",
+  5:  "",
+  6:  "",
+  7:  "",
+  8:  "",
+  9:  "",
+  10: "",
+  11: "",
+  12: "",
+  13: "",
+  14: "",
+  15: "",
+};
+
+/* ════════════════════════════════════════════════════════════════════════
+   ▛ Vous pouvez arrêter votre lecture ici — le reste fonctionne tout seul ▟
+
+   COMMENT ÇA MARCHE
+   • Le site cherche les photos dans le dossier "photos" :
+     1.jpg, 2.jpg, 3.jpg… et les affiche dans l'ordre des numéros.
+   • Pour CHANGER L'ORDRE : renommez simplement le numéro d'un fichier.
+     Ex. pour mettre la photo 7 en couverture, appelez-la 1.jpg
+         (et renommez l'ancienne 1.jpg en 7.jpg pour l'échanger).
+   • Pour AJOUTER une photo : mettez-la dans le dossier avec le numéro suivant.
+   • Numérotez sans « trou » : 1, 2, 3, 4… (un petit trou est toléré).
+════════════════════════════════════════════════════════════════════════ */
+
+const TROUS_TOLERES = 4;   // nb de numéros manquants d'affilée avant d'arrêter
+const BORNE_MAX      = 400; // sécurité : ne cherche jamais au-delà
+
+/* Teste si une image existe réellement */
+function chargeImage(src){
+  return new Promise(resolve=>{
+    const img = new Image();
+    img.onload  = ()=>resolve(img);
+    img.onerror = ()=>resolve(null);
+    img.src = src;
+  });
+}
+
+/* Trouve toutes les photos numérotées présentes dans le dossier */
+async function trouverPhotos(){
+  const trouvees = [];
+  let manquants = 0;
+  for(let n=1; n<=BORNE_MAX; n++){
+    const src = `${CONFIG.dossier}/${n}.${CONFIG.extension}`;
+    const img = await chargeImage(src);
+    if(img){ trouvees.push({n, src, w:img.naturalWidth, h:img.naturalHeight}); manquants=0; }
+    else{ manquants++; if(manquants>TROUS_TOLERES && trouvees.length) break; if(n>20 && !trouvees.length) break; }
   }
+  return trouvees;
+}
 
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-    document.body.style.overflow = '';
-  }
+/* Construit la page */
+function construire(photos){
+  const album = document.getElementById('album');
 
-  function changePhoto(dir) {
-    current = (current + dir + photos.length) % photos.length;
-    document.getElementById('lightbox-img').src = photos[current];
-  }
+  // Couverture
+  const cov = document.createElement('header');
+  cov.className = 'couverture';
+  cov.innerHTML = `
+    <div class="eyebrow">Album</div>
+    <h1>${escapeHtml(CONFIG.titre)}</h1>
+    ${CONFIG.sousTitre ? `<p class="sous-titre">${escapeHtml(CONFIG.sousTitre)}</p>` : ''}
+    <div class="filet"></div>
+    <div class="indice">Défilez pour commencer</div>`;
+  album.appendChild(cov);
 
-  document.getElementById('lightbox').addEventListener('click', function(e) {
-    if (e.target === this) closeLightbox();
+  const total = photos.length;
+  photos.forEach((p, i)=>{
+    const sec = document.createElement('section');
+    sec.className = 'chapitre';
+    const legende = (LEGENDES[p.n] || '').trim();
+    sec.innerHTML = `
+      <div class="cadre">
+        <span class="num">${String(p.n).padStart(2,'0')}</span>
+        <img src="${p.src}" alt="Photo ${p.n}" loading="lazy"
+             width="${p.w}" height="${p.h}">
+      </div>
+      <div class="legende">
+        <div class="compteur">${String(i+1).padStart(2,'0')} — ${String(total).padStart(2,'0')}</div>
+        ${legende ? `<div class="texte">${escapeHtml(legende)}</div>` : ''}
+      </div>`;
+    album.appendChild(sec);
   });
 
-  document.addEventListener('keydown', function(e) {
-    const lb = document.getElementById('lightbox');
-    if (!lb.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') changePhoto(-1);
-    if (e.key === 'ArrowRight') changePhoto(1);
-  });
+  // Fin
+  const fin = document.createElement('footer');
+  fin.className = 'fin';
+  fin.innerHTML = `
+    <div class="mot">${escapeHtml(CONFIG.motFin)}</div>
+    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">Revenir au début</button>`;
+  album.appendChild(fin);
+
+  revelerAuScroll();
+}
+
+/* Révélation douce quand chaque photo entre à l'écran */
+function revelerAuScroll(){
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vu'); obs.unobserve(e.target); } });
+  }, { threshold:.18 });
+  document.querySelectorAll('.chapitre').forEach(el=>obs.observe(el));
+}
+
+/* Barre de progression */
+function majProgression(){
+  const h = document.documentElement;
+  const p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+  document.getElementById('progression').style.width = (p*100)+'%';
+}
+window.addEventListener('scroll', majProgression, {passive:true});
+
+function escapeHtml(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* Aucune photo trouvée → message d'aide */
+function messageVide(){
+  document.getElementById('album').innerHTML = `
+    <div class="info"><p>Aucune photo trouvée.<br><br>
+      Placez vos images dans un dossier <code>photos</code>,
+      nommées <code>1.jpg</code>, <code>2.jpg</code>, <code>3.jpg</code>…
+    </p></div>`;
+}
+
+/* Démarrage */
+(async function(){
+  const photos = await trouverPhotos();
+  if(!photos.length){ messageVide(); return; }
+  construire(photos);
+  majProgression();
+})();
 </script>
 </body>
 </html>
